@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Register Page</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='login_reg/util.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='login_reg/main.css') }}">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <!-- <script src="js/script.js"></script> -->
+<!--===============================================================================================-->
+</head>
+<body style="background-color: #666666;">
+	
+	<div class="limiter">
+			<div class="wrap-login">
+				<form action="/createPatient" method="POST" class="login-form validate-form" action="#" id="form" >
+					<span class="login-form-title ">
+						Create an Account
+					</span>
+					<div class="wrap-input validate-input" >
+						<input class="input" type="text" name="fullname"  id="name" minlength="4" maxlength="25" required placeholder="User Name">
+						<!-- <span class="label-input">User Name</span> -->
+					</div>
+					
+					<div class="wrap-input validate-input" >
+						<input class="input" type="text" name="email" id="email" placeholder="Email" required>
+					</div>
+					<span id="error"></span>
+					<div class="wrap-input validate-input" >
+						<input class="input" type="password" name="password" id="password" maxlength="16" minlength="8"  placeholder="Password" required>
+					</div>
+					<div class="container-login-form-btn">
+						<input type="submit" class="login-form-btn" id="submit" value="Register" onclick="validate()">
+					</div>
+                    <span>
+                    <a href="/signIn" style="color: black; font-size: 18px; padding-left: 25px;">Already have an Account</a>
+                    </span>
+				</form>
+
+				<div class="login-more" style="background-image: url(https://cdni.iconscout.com/illustration/premium/thumb/online-healthcare-3420630-2862289.png);">
+					<div class="empty" style="padding-bottom: 10%;"></div>
+					<div class=row>
+						<div class="col-2"></div>
+						<div class="col-8">
+							<div class="login-content"  >
+								<h1 style="font-size: 45px;font-weight: bolder;">MEDICO</h1>
+								<br>
+								<h3 class="line-1 anim-typewriter"style="padding-left: 5%; color: white">Your health is our priority</h3>
+								<p  style="color: rgb(231, 222, 167);padding: 15px; font-size: 19px; ">India's Best Digital Health Consultation Platform, With More Than 1 Crore Patients Served. Our Tools Help Take Your Practice Online, Improve Patient Outcomes, And Save Time.</p>
+								<form action="about.html" method="POST" style="padding-left: 15px;">  
+									<input type="submit" value="Want to Know More About Us" style="padding:10px; border-radius: 5px; background-color: blue; color: cornsilk; font-weight: bolder;">
+								</form>	
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script>
+		const email = document.getElementById("email");
+		var error = document.getElementById("error");
+		console.log("hi")
+		const validate = () => {
+			const userEmail = email.value
+			if (/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(userEmail)){
+				return userEmail
+				}
+			else{
+				error.textContent = "Please enter a valid email"
+				error.style.color = "red"
+			}
+			console.log("hi")
+		}       
+	</script>
+</body>
+ 
+</html>
