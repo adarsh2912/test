@@ -32,7 +32,8 @@ def signIn():
 @app.route('/patientDashboard')
 @token_required
 def patientDashboard(current_user):
-    return render_template('patientDashboard.html')
+    patient = Patient.query.filter_by(email = current_user).first()
+    return render_template('patientDashboard.html', patient = patient)
 
 # Patient Register
 
@@ -85,7 +86,7 @@ def profile(current_user):
 
 # Doctor Login
 
-@app.route('/doctorLogin', methods = ["POST"])
+@app.route('/doctorLogin', methods = ["POST", "GET"])
 def docLogin():
     if request.method == "POST":
         fullname = request.json["fullname"]
@@ -99,4 +100,12 @@ def docLogin():
         token = jwt.encode({'user':result.email, 'exp': datetime.utcnow()+timedelta(minutes=15)}, app.config['SECRET_KEY'])
         session["jwt"] = token
         return redirect(url_for('doctorDashboard'))
-    return render_template('doctorLogin.html')
+    return render_template('doctorslogin.html')
+
+# Doctor Profiles
+
+@app.route('/doctorProfiles', methods= ["POST", "GET"])
+@token_required
+def doctorProfiles(current_user):
+    doctors = Doctor.query.all()
+    return render_template('doctorProfiles.html',doctors = doctors)

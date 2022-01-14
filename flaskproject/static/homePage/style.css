@@ -10,7 +10,7 @@ ul{
     z-index: 1;
     position: fixed;
     width: 100%;
-    padding: 1rem;
+    padding: 0.5rem;
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -37,10 +37,10 @@ ul{
     margin-right: 10px;
 }
 .nav-item button{
-    padding: 0.8em;
+    padding: 15px;
     border: none;
     border-radius: 10px;
-    font-size: 0.8em;
+    font-size: 0.7em;
     background-color: rgb(88,68,244);
     color: rgb(255,255,255);
 }
