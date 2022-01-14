@@ -67,7 +67,7 @@ def login():
         token = jwt.encode({'user':result.email, 'exp': datetime.utcnow()+timedelta(minutes=15)}, app.config['SECRET_KEY'])
         session["jwt"] = token
         return redirect(url_for('patientDashboard'))
-    return jsonify({"jwt": "jnfjd"}) 
+    return jsonify({"jwt": "token"}) 
     
 # Patient Profile
 

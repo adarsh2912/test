@@ -1,1 +1,109 @@
-<h1>Hi</h1>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clinic </title>
+    <link rel='stylesheet' href="{{url_for('static', filename='patientDashboard/style.css')}}" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="menu-wrapper">
+        <div class="sidebar-header">
+            <div class="sideBar">
+                <div><img src='images/Health-Sign-blue-icon.png' /></div>
+                <ul>
+                    <li class="selected"><i class="fas fa-home"></i><label>Dashboard</label></li>
+                    <li><i class="fas fa-user"></i><label>Profile</label></li>
+                    <li><i class="fas fa-user-md"></i><label>Doctor</label></li>
+                    <li><i class="fas fa-phone-alt"></i><label>Contact</label></li>
+                    <li><i class="fas fa-user"></i><label>About us</label></li>
+                    <li><i class="fas fa-cog"></i><label>Setting</label></li>
+                </ul> <span class="cross-icon"><i class="fas fa-times"></i></span>
+            </div>
+            <div class="backdrop"></div>
+            <div class="content">
+                <header>
+                    <div class="menu-button" id='desktop'>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                    <div class="menu-button" id='mobile'>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+                </header>
+                <div class="content-data"> 
+                    <div class="title">
+                        <h2>Dashboard</h2><br>
+                    </div>
+                    <div class="grid-container g1">
+                        <div class="grid-item item1">
+                            <h3>Welcome Shivam Bhai!!</h3><br>
+                            <p>Lorem ipsum dolor sit amet consectetur</p> 
+                            <p>adipisicing elit. Delectus maiores quod hic.</p><br>
+                            <button class="btn">Connect to Doctor.</button>
+                        </div>
+                        <div class="grid-item item2">
+                            <img src="{{url_for('static', filename='patientDashboard/dashImage.png')}}" alt="">
+                        </div>
+                    </div>
+                    <br><br>
+                    <div>
+                        <h2>Prescriptions</h2><br>
+                    </div>
+                    <div class="g2">
+                        <table>
+                             <tr>
+                                <th>S No.</th>
+                                <th>Date</th>
+                                <th>Doctor's Name</th>
+                                <th>Time</th>
+                                <th>Details</th>
+                             </tr>
+                              <tr>
+                                <td>1.</td>
+                                <td>13 Jan 2022</td>
+                                <td>Peter chaudhari</td>
+                                <td>12 PM</td>
+                                <td>
+                                    <a href="#popup1">
+                                        <button class="button-32"  role="button">view</button>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>1.</td>
+                                <td>13 Jan 2022</td>
+                                <td>Peter chaudhari</td>
+                                <td>12 PM</td>
+                                <td>
+                                    <a href="#popup1">
+                                        <button class="button-32"  role="button">view</button>
+                                    </a>
+                                    
+                                   </td>
+                                   <div id="popup1" class="overlay">
+                                    <div class="popup">
+                                      <h2>Here i am</h2>
+                                      <a class="close" href="#">&times;</a>
+                                      <div class="content">
+                                        Thank to pop me out of that button, but now i'm done so you can close this window.
+                                      </div>
+                                    </div>
+                                  </div>
+                            </tr>
+                        </table>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="{{url_for('static', filename='patientDashboard/index.js')}}"></script>
+</body>
+</html>
