@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clinic </title>
-    <link rel='stylesheet' href="css/style.css" />
+    <link rel='stylesheet' href="{{url_for('static', filename='patientDashboard/style.css')}}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -14,14 +14,12 @@
     <div class="menu-wrapper">
         <div class="sidebar-header">
             <div class="sideBar">
-                <div><img src='images/Health-Sign-blue-icon.png' /></div>
+                <div><img src='https://img.icons8.com/external-filled-outline-satawat-anukul/64/000000/external-medical-medical-filled-outline-filled-outline-satawat-anukul-40.png' /></div>
                 <ul>
-                    <li class="selected"><i class="fas fa-home"></i><label>Dashboard</label></li>
-                    <li><i class="fas fa-user"></i><label>Profile</label></li>
-                    <li><i class="fas fa-user-md"></i><label>Doctor</label></li>
-                    <li><i class="fas fa-phone-alt"></i><label>Contact</label></li>
-                    <li><i class="fas fa-user"></i><label>About us</label></li>
-                    <li><i class="fas fa-cog"></i><label>Setting</label></li>
+                    <a style="text-decoration: none; color: white;" href="/patientDashboard"><li class="selected"><i class="fas fa-home"></i><label>Dashboard</label></li></a>
+                    <a style="text-decoration: none; color: white;" href="/doctorProfiles"><li><i class="fas fa-user-md"></i><label>Profile</label></li></a>
+                    <a style="text-decoration: none; color: white;" href="/doctorProfiles"><li><i class="fas fa-user-md"></i><label>Doctors</label></li></a>
+                    <a style="text-decoration: none; color: white;" href="/vitalProfiles"><li><i class="fas fa-user-md"></i><label>Vitals</label></li></a>
                 </ul> <span class="cross-icon"><i class="fas fa-times"></i></span>
             </div>
             <div class="backdrop"></div>
@@ -45,51 +43,63 @@
                         <main class="grid">
                             <article>
                                <div class="text vitals">
-                                <i class="fas fa-burn fa-3x"></i>
-                                <h4>Blood Pressure</h4>
-                                <h2>100/70</h2>
-                                <span><i class="fas fa-arrow-up"></i> 10% higher than last month</span>
+                                    <br>
+                                    <i class="fas fa-burn fa-3x"></i>
+                                    <h4>Blood Pressure</h4>
+                                    <br>
+                                    <h2>{{vital.bloodPressure}}</h2>
+                                    <!-- <span><i class="fas fa-arrow-up"></i> 10% higher than last month</span> -->
                                </div>
                             </article>
                             <article>
-                                <div class="text">
+                                <div class="text vitals">
                                     <br>
-                                    <h3>card 1</h3><br>
-                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Saepe odio fugiat natus!</p><br>
-                                    <button>button-2</button>
-                                </div>
+                                    <i class="fas fa-heartbeat fa-3x"></i>
+                                    <h4>Heart Rate</h4>
+                                    <br>
+                                    <h2>{{vital.heartRate}}</h2>
+                                    <!-- <span><i class="fas fa-arrow-up"></i> 10% higher than last month</span> -->
+                               </div>
                             </article>
                             <article>
-                                <div class="text">
+                                <div class="text vitals">
                                     <br>
-                                    <h3>card 1</h3><br>
-                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Saepe odio fugiat natus!</p><br>
-                                    <button>button-3</button>
-                                </div>
+                                    <i class="fas fa-cubes fa-3x"></i>
+                                    <h4>Glucose Level</h4>
+                                    <br>
+                                    <h2>{{vital.glucoseLevel}}</h2>
+                                    <!-- <span><i class="fas fa-arrow-up"></i> 10% higher than last month</span> -->
+                               </div>
                             </article>
                             <article>
-                                <div class="text">
+                                <div class="text vitals">
                                     <br>
-                                    <h3>card 1</h3><br>
-                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Saepe odio fugiat natus!</p><br>
-                                    <button>button-3</button>
-                                </div>
+                                    <i class="fas fa-microscope fa-3x"></i>
+                                    <h4>Blood Count</h4>
+                                    <br>
+                                    <h2>{{vital.bloodCount}}</h2>
+                                    <!-- <span><i class="fas fa-arrow-down"></i> 10% higher than last month</span> -->
+                               </div>
                             </article>
                             <article>
-                                <div class="text">
+                                <div class="text vitals">
                                     <br>
-                                    <h3>card 1</h3><br>
-                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Saepe odio fugiat natus!</p><br>
-                                    <button>button-3</button>
-                                </div>
+                                    <i class="fab fa-opera fa-3x"></i>
+                                    <h4>Oxygen Level</h4>
+                                    <br>
+                                    <h2>{{vital.oxygenLevel}}</h2>
+                                    <!-- <span><i class="fas fa-arrow-up"></i> 10% higher than last month</span> -->
+                               </div>
                             </article>
                             <article>
-                                <div class="text">
+                                <div class="text vitals">
                                     <br>
-                                    <h3>card 1</h3><br>
-                                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Saepe odio fugiat natus!</p><br>
-                                    <button>button-3</button>
-                                </div>
+                                    <i class="fas fa-weight fa-3x"></i>
+                                    <h4>Body Weight</h4>
+                                    <br>
+                                    <h2>{{vital.bodyWeight}}</h2>
+                                    <!-- <span><i class="fas fa-arrow-down"></i> 10% higher than last month</span> -->
+                               </div>
                             </article>
                         </main>
                     </div>
@@ -98,6 +108,6 @@
             </div>
         </div>
     </div>
-    <script src="index.js"></script>
+    <script src="u{{url_for('static', filename='patientDashboard/index.js')}}"></script>
 </body>
 </html>

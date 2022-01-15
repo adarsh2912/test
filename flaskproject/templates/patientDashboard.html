@@ -5,6 +5,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clinic </title>
     <link rel='stylesheet' href="{{url_for('static', filename='patientDashboard/style.css')}}" />
+    <style>
+    .innerTable{
+        border:2px solid  black;
+      border-collapse: collapse;
+     margin-top: 10%;
+     margin-left: auto;
+      margin-right: auto; 
+      border: 1px solid;
+  padding: 10px;
+  box-shadow: 5px 10px #888888;
+    }
+    .innerTable th, .innerTable td {
+      padding: 5px;
+      text-align: left;
+      border: 2px solid black;
+      border-collapse: collapse;
+    }   
+    </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
@@ -18,6 +36,7 @@
                     <a style="text-decoration: none; color: white;" href="/patientDashboard"><li class="selected"><i class="fas fa-home"></i><label>Dashboard</label></li></a>
                     <a style="text-decoration: none; color: white;" href="/doctorProfiles"><li><i class="fas fa-user-md"></i><label>Profile</label></li></a>
                     <a style="text-decoration: none; color: white;" href="/doctorProfiles"><li><i class="fas fa-user-md"></i><label>Doctors</label></li></a>
+                    <a style="text-decoration: none; color: white;" href="/vitalProfiles"><li><i class="fas fa-user-md"></i><label>Vitals</label></li></a>
                     <!-- <li><i class="fas fa-phone-alt"></i><label>Contact</label></li> -->
                     <!-- <li><i class="fas fa-user"></i><label><a style="text-decoration: none;" href="/doctorProfiles">About us</a></label></li> -->
                     <!-- <li><i class="fas fa-cog"></i><label>Setting</label></li> -->
@@ -60,12 +79,12 @@
                         <table>
                              <tr>
                                 <th>S No.</th>
-                                <th>Date</th>
+                                <th>Diagnosis</th>
+                                <th>Medication</th>
                                 <th>Doctor's Name</th>
-                                <th>Time</th>
                                 <th>Details</th>
                              </tr>
-                              <tr>
+                              <!-- <tr>
                                 <td>1.</td>
                                 <td>13 Jan 2022</td>
                                 <td>Peter chaudhari</td>
@@ -75,12 +94,13 @@
                                         <button class="button-32"  role="button">view</button>
                                     </a>
                                 </td>
-                            </tr>
+                            </tr> -->
+                            {% for prescription in prescriptions%}
                             <tr>
-                                <td>1.</td>
-                                <td>13 Jan 2022</td>
-                                <td>Peter chaudhari</td>
-                                <td>12 PM</td>
+                                <td>{{count}}</td>
+                                <td>{{prescription.diagnosisName}}</td>
+                                <td>{{prescription.medicationitem}}</td>
+                                <td>{{prescription.doctor.fullname}}</td>
                                 <td>
                                     <a href="#popup1">
                                         <button class="button-32"  role="button">view</button>
@@ -89,14 +109,16 @@
                                    </td>
                                    <div id="popup1" class="overlay">
                                     <div class="popup">
-                                      <h2>Here i am</h2>
+                                        
                                       <a class="close" href="#">&times;</a>
                                       <div class="content">
-                                        Thank to pop me out of that button, but now i'm done so you can close this window.
+                                        
                                       </div>
                                     </div>
                                   </div>
                             </tr>
+                            {% set count = count + 1 %}
+                            {% endfor %}
                         </table>
                     </div>
                     
