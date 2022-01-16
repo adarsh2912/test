@@ -14,8 +14,12 @@ class Patient(db.Model):
     age = db.Column(db.Integer, nullable = True)
     gender = db.Column(db.String(20), nullable = True)
     address = db.Column(db.String(120), nullable = True)
-    phone = db.Column(db.Integer, nullable = True)
-    image = db.Column(db.String(1000), nullable = True)
+    phone = db.Column(db.String(15), nullable = True)
+
+    # Deprecated attributes
+    image = db.Column(db.Text, nullable = True)
+    filename = db.Column(db.Text, nullable = True)
+    mimetype = db.Column(db.Text, nullable = True)
     
     def __repr__(self):
         return f"Patient('{self.fullname}', '{self.email}')" 
@@ -55,7 +59,7 @@ class Prescription(db.Model):
     doseVolumne = db.Column(db.String(5), nullable = True) # mg or ml
     frequency =  db.Column(db.Integer, nullable = True) # specify in /day
     interval = db.Column(db.Integer, nullable = True) # specify in hours
-    additionalInstructions = db.Column(db.String(200), nullable = True) # Textarea
+    additionalInstructions = db.Column(db.String(500), nullable = True) # Textarea
     severity = db.Column(db.String(20), nullable = True) # moderate, normal, serious
     repetetion = db.Column(db.Integer, nullable = True) #how many days to repeat
 

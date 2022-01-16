@@ -8,7 +8,7 @@ import jwt
 def doctoken_required(f):
     @wraps(f)
     def decorated(*args, **kwargs):
-        token = session.get('jwt') 
+        token = session.get('docjwt') 
         # return 401 if token is not passed
         if not token:
             return jsonify({'message' : 'Token is missing !!'}), 401

@@ -1,8 +1,7 @@
-
 from flaskproject import app, db
 from flask import request, session, url_for, make_response
 from flask.json import jsonify
-from werkzeug.utils import redirect
+from werkzeug.utils import redirect, secure_filename
 import hashlib
 from datetime import datetime, timedelta
 import jwt
@@ -11,18 +10,29 @@ from flaskproject.doctorDecorator import doctoken_required
 from flaskproject.models import Patient, Doctor, Prescription
 from flask_restful import Api, Resource, reqparse
 from flask.templating import render_template
+import os, uuid
 
 
 # Home Page route
 
-@app.route('/home')
+@app.route('/')
 def home():
     return render_template('homePage.html')
 
+
+@app.route('/about', methods=["POST","GET"])
+def about():
+    if request.method == "POST":
+        return render_template('about.html')
+    return render_template('about.html')
+
+
 # sign up for patient
 
-@app.route('/signUp')
+@app.route('/signUp', methods=["POST", "GET"])
 def signUp():
+    if request.method == "POST":
+        return render_template('register.html')
     return render_template('register.html')
 
 @app.route('/signIn')
@@ -34,7 +44,8 @@ def signIn():
 @token_required
 def patientDashboard(current_user):
     patient = Patient.query.filter_by(email = current_user).first()
-    return render_template('patientDashboard.html', patient = patient, prescriptions = patient.prescriptions, count = 1)
+    uniqueStr = str(uuid.uuid1())
+    return render_template('patientDashboard.html', patient = patient, prescriptions = patient.prescriptions, uniqueStr = uniqueStr)
 
 # Patient Register
 
@@ -66,7 +77,7 @@ def login():
         result = Patient.query.filter_by(email = email).first()
         if result == None or hashedPassword != result.password:
             return "Invalid email or password"
-        token = jwt.encode({'user':result.email, 'exp': datetime.utcnow()+timedelta(minutes=15)}, app.config['SECRET_KEY'])
+        token = jwt.encode({'user':result.email, 'exp': datetime.utcnow()+timedelta(minutes=65)}, app.config['SECRET_KEY'])
         session["jwt"] = token
         return redirect(url_for('patientDashboard'))
     return jsonify({"jwt": "token"}) 
@@ -93,20 +104,18 @@ def docLogin():
         fullname = request.form["fullname"]
         email = request.form["email"]
         password = request.form["password"]
-        # hashedPassword = hashlib.md5(bytes(str(password),encoding='utf-8'))
-        # hashedPassword = hashedPassword.hexdigest() 
         result = Doctor.query.filter_by(email = email).first()
         if result == None or password != result.password:
             return "Invalid email or password"
-        token = jwt.encode({'user':result.email, 'exp': datetime.utcnow()+timedelta(minutes=15)}, app.config['SECRET_KEY'])
-        session["jwt"] = token
+        token = jwt.encode({'user':result.email, 'exp': datetime.utcnow()+timedelta(minutes=65)}, app.config['SECRET_KEY'])
+        session["docjwt"] = token
         return redirect(url_for('doctorDashboard'))
     return render_template('doctorslogin.html')
 
 # Doctor Profiles
 
 @app.route('/doctorProfiles', methods= ["POST", "GET"])
-@doctoken_required
+@token_required
 def doctorProfiles(current_user):
     doctors = Doctor.query.all()
     return render_template('doctorProfiles.html',doctors = doctors)
@@ -147,11 +156,6 @@ def prescribe(current_user, patient_id):
         return redirect(url_for('doctorDashboard'))
     return render_template('prescription.html')
 
-# @app.route('/prescribeForm', methods= ["POST", "GET"])
-# @doctoken_required
-# def prescribeForm(current_user):
-#     return render_template('prescription.html')
-
 
 # Doctor Dashboard
 
@@ -170,5 +174,55 @@ def myPatients(current_user):
     for prescription in prescriptions:
         if prescription.doctor.email == current_user:
             patient = Patient.query.filter_by(id = prescription.patient_id).first()
-            tempList.append(patient)
+            if patient not in tempList:
+                tempList.append(patient)
     return render_template('doctorDashboard.html', patients = tempList)
+
+@app.route('/doctorLogout')
+@doctoken_required
+def doctorLogout(current_user):
+    if session.get('jwt') == False:
+        session.pop("docjwt")
+        session.clear()
+    else:
+        session.pop('docjwt')
+    return render_template('doctorslogin.html')
+
+@app.route('/patientLogout')
+@token_required
+def patientLogout(current_user):
+    if session.get('docjwt') == False:     # if doctor is already logged out then pop() and clear()
+        session.pop("jwt")
+        session.clear()
+    else:
+        session.pop('jwt')               # if doctor is logged in then only pop()
+    return render_template('login.html')
+
+
+@app.route('/updateProfile', methods=["GET"])
+@token_required
+def updateProfile(current_user):
+    patient = Patient.query.filter_by(email = current_user).first()
+    print(patient.email)
+    return render_template('patientprof.html', patient = patient)
+
+@app.route('/uploadProfile', methods=["POST", "GET"])
+@token_required
+def uploadProfile(current_user):
+    patient = Patient.query.filter_by(email = current_user).first()
+    if request.method == "POST":
+        fullname = request.form['fullname']
+        age = request.form['age']
+        gender = request.form['gender']
+        address = request.form['address']
+        phone = request.form['phone']
+    
+        patient.fullname = fullname
+        patient.age = age
+        patient.gender = gender
+        patient.address = address
+        patient.phone = phone
+        
+        db.session.commit()
+        return render_template('patientprof.html', patient = patient)
+    return render_template('patientprof.html', patient = patient)

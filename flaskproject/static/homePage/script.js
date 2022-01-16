@@ -10,9 +10,17 @@ window.addEventListener('load', () => {
 })
 
 // dark mode implementation
-let toggle = false
 
-svg.addEventListener('click',() => {
+let toggle = false
+// if (localStorage.getItem("dark") === null || localStorage.getItem("dark") == 'False') {
+//     toggle = false
+// }
+// else{
+//     toggle = true
+// }
+
+svg.addEventListener('click',(e) => {
+    e.preventDefault()
     const timeline = anime.timeline({
         duration: 750,
         easing: "easeOutExpo"
@@ -30,14 +38,21 @@ svg.addEventListener('click',() => {
         backgroundColor: toggle ? "rgb(255,255,255)" : "rgb(22,22,22)"
     },"-=700")
     .add({
-        targets: [".mode","a"],
+        targets: [".mode", "body", ".content-data", "header"],
         color: toggle ? "rgb(22,22,22)" : "rgb(255,255,255)",
+        backgroundColor: toggle ? "rgb(255,255,255)" : "rgb(22,22,22)"
+    },"-=700")
+    .add({
+        targets: [".g2"],
+        color: toggle ? "rgb(255,255,255)" : "rgb(22,22,22)",
         backgroundColor: toggle ? "rgb(255,255,255)" : "rgb(22,22,22)"
     },"-=700")
     if(!toggle){
         toggle = true
+        //localStorage.setItem('dark', 'True')
     }
     else{
         toggle = false
+        //localStorage.setItem('dark', 'False')
     }
 })

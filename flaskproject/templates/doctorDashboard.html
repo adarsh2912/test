@@ -54,7 +54,7 @@
             <div></div>
             <div></div>
           </div>
-          <button class="button-69 button-31" role="button"><i class="fas fa-sign-out-alt"></i></button>
+          <button onclick="window.location.href='/doctorLogout'" class="button-69 button-31" role="button"><i class="fas fa-sign-out-alt"></i></button>
         </header>
 
         <div class="content-data">
@@ -79,8 +79,8 @@
               {% for patient in patients %}
               <tr>
                 <td>{{patient.fullname}}</td>
-                <td>19</td>
-                <td>Male</td>
+                <td>{{patient.age}}</td>
+                <td>{{patient.gender}}</td>
                 <td><button onclick="window.location.href='/prescribe/{{patient.id}}'" class="button-31"
                     role="button">Prescribe</button></td>
               </tr>

@@ -93,3 +93,22 @@ body {
 .button-69{
   width:10%;
 }
+
+/* Pop up table styling start */
+.ttable {
+  display: table;
+  padding-left: 7%;
+}
+.table-row {
+  display: table-row;
+}
+.table-cell {
+  display: table-cell;
+  padding: 10px;
+  width: 20%;
+  /* border: 1px solid black; */
+}
+.table-row:nth-child(even) {
+  /* background: lightblue; */
+}
+/* popup table styling end */

@@ -171,7 +171,7 @@ button:hover {
 }
 
 .login-form {
-  width: 690px;
+  width: 590px;
   min-height: 100vh;
   display: block;
   background-color: #e5eef3;
@@ -186,6 +186,7 @@ button:hover {
   color: #333333;
   line-height: 1.2;
   text-align: center;
+  padding-bottom: 25px;
 }
 
 .wrap-input {
@@ -385,4 +386,9 @@ to{width: 12em;}
 @keyframes blinkTextCursor{
 from{border-right-color: rgba(255,255,255,.75);}
 to{border-right-color: transparent;}
+}
+[type=submit], button {
+  -webkit-appearance: button;
+  font-size: medium;
+  font-weight: bold;
 }

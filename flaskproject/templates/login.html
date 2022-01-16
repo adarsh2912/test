@@ -14,14 +14,14 @@
 	<div class="limiter">
 		<!-- <div class="container-login"> -->
 			<div class="wrap-login" style="background-image: url('https://i.pinimg.com/originals/4f/42/ff/4f42ffa0e11543bea178d0c1cb312c90.jpg');">
-				<form  action="/patientLogin" method="POST" class="login-form style=padding-top:195px">
+				<form action="/patientLogin" method="POST" class="login-form style=padding-top:195px">
 					<span class="login-form-title p-b-43">
 						Welcome Back!
 					</span>
 					
 					
 					<div class="wrap-input validate-input" >
-						<input class="input" type="text" name="email" id="email" placeholder="Email" required> 
+						<input class="input" type="email" name="email" id="email" placeholder="Email" required> 
 					</div>
 					<span id="error"></span>
 					
@@ -32,25 +32,25 @@
 					<div class="container-login-form-btn">
 						<input type="submit" class="login-form-btn" id="submit" value="Login" onclick="validate()">
 					</div>
+					
 					<br>
-					<div>
-						<a href="/signUp" style="color: black; font-size: 18px; padding-left: 25px;">Have n't Registered yet</a>
-					</div>
+					
+					<a href="/signUp" style="color: black; font-size: 18px; padding-left: 25%;">Have n't Registered yet</a>
 					
 				</form>
 
-				<div class="login-more" style="background-image: url(https://cdn-icons-png.flaticon.com/512/4497/4497898.png); background-size: 70%;">
+				<div class="login-more" style="background-image: url(https://cdni.iconscout.com/illustration/premium/thumb/hospital-patient-in-the-private-ward-and-doctor-checking-patient-2823166-2352790.png); background-size: 100%;">
 					<div class="login-more" style="background-image: url();">
 					<div class="empty" style="padding-bottom: 10%;"></div>
 					<div class=row>
 						<div class="col-2"></div>
 						<div class="col-8">
-							<div class="login-content" style="background-color: rgb(185, 205, 223); color: black;" >
+							<div class="login-content" style="background-color: rgb(185, 205, 223); color: black; opacity: .7;"  >
 								<h1  style="font-size: 45px;font-weight: bolder;">MEDICO</h1>
 								<br>
-								<h3 class="line-1 anim-typewriter" style="padding-left: 5%; color: black">Your health is our priority</h3>
-								<p style="color:black;padding: 15px; font-size: 19px; ">India's Best Digital Health Consultation Platform, With More Than 1 Crore Patients Served. Our Tools Help Take Your Practice Online, Improve Patient Outcomes, And Save Time.</p>
-								<form action="about.html" method="POST" style="padding-left: 15px;">  
+								<h3 class="line-1 anim-typewriter" style="padding-left: 28px; color: black">Your health is our priority</h3>
+								<p style="color:black;padding: 15px; font-size: 17px; font-weight: bolder;">India's Best Digital Health Consultation Platform, With More Than 1 Crore Patients Served. Our Tools Help Take Your Practice Online, Improve Patient Outcomes, And Save Time.</p>
+								<form action="/about" method="POST" style="padding-left: 15px;">  
 									<input type="submit" value="Want to Know More About Us" style="padding:10px; border-radius: 5px; background-color: blue; color: cornsilk;">
 								</form>	
 							</div>
@@ -62,23 +62,4 @@
 	</div>
 
 </body>
-<script>
-	const name = document.getElementById("name");
-    const email = document.getElementById("email");
-	var error = document.getElementById("error")
-
-    const validate = () => {
-        const userEmail = email.value
-        if (/^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(userEmail)){
-            return userEmail;
-            }
-        else{
-            alert("Enter a valid email id")
-			// error.textContent = "Please enter a valid email"
-            // error.style.color = "red"
- 		}
-	}       
-
-
-</script> 
 </html>

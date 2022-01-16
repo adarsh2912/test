@@ -4,7 +4,6 @@
 	<title>Register Page</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='login_reg/util.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='login_reg/main.css') }}">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
     <!-- <script src="js/script.js"></script> -->
@@ -14,7 +13,7 @@
 	
 	<div class="limiter">
 			<div class="wrap-login">
-				<form action="/createPatient" method="POST" class="login-form validate-form" action="#" id="form" >
+				<form class="login-form validate-form" action="/createPatient" method="POST" id="form" >
 					<span class="login-form-title ">
 						Create an Account
 					</span>
@@ -24,7 +23,7 @@
 					</div>
 					
 					<div class="wrap-input validate-input" >
-						<input class="input" type="text" name="email" id="email" placeholder="Email" required>
+						<input class="input" type="email" name="email" id="email" placeholder="Email" required>
 					</div>
 					<span id="error"></span>
 					<div class="wrap-input validate-input" >
@@ -33,8 +32,9 @@
 					<div class="container-login-form-btn">
 						<input type="submit" class="login-form-btn" id="submit" value="Register" onclick="validate()">
 					</div>
+					<br>
                     <span>
-                    <a href="/signIn" style="color: black; font-size: 18px; padding-left: 25px;">Already have an Account</a>
+                    <a href="/signIn" style="color: black; font-size: 18px; padding-left: 20%;">Already have an Account</a>
                     </span>
 				</form>
 
@@ -46,9 +46,9 @@
 							<div class="login-content"  >
 								<h1 style="font-size: 45px;font-weight: bolder;">MEDICO</h1>
 								<br>
-								<h3 class="line-1 anim-typewriter"style="padding-left: 5%; color: white">Your health is our priority</h3>
+								<h3 class="line-1 anim-typewriter"style="padding-left: 28px; color: white">Your health is our priority</h3>
 								<p  style="color: rgb(231, 222, 167);padding: 15px; font-size: 19px; ">India's Best Digital Health Consultation Platform, With More Than 1 Crore Patients Served. Our Tools Help Take Your Practice Online, Improve Patient Outcomes, And Save Time.</p>
-								<form action="about.html" method="POST" style="padding-left: 15px;">  
+								<form action="/about" method="POST" style="padding-left: 15px;">  
 									<input type="submit" value="Want to Know More About Us" style="padding:10px; border-radius: 5px; background-color: blue; color: cornsilk; font-weight: bolder;">
 								</form>	
 							</div>
