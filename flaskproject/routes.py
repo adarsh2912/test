@@ -178,6 +178,12 @@ def myPatients(current_user):
                 tempList.append(patient)
     return render_template('doctorDashboard.html', patients = tempList)
 
+@app.route('/doctorInfo')
+@doctoken_required
+def doctorInfo(current_user):
+    doctor = Doctor.query.filter_by(email = current_user).first()
+    return render_template('doctorInfo.html', doctor = doctor)
+
 @app.route('/doctorLogout')
 @doctoken_required
 def doctorLogout(current_user):
